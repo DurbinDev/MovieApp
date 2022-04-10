@@ -23,8 +23,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
@@ -77,17 +82,100 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClick: (String) -> Unit = {}){
 
                 Text(movie.title,
                     style = MaterialTheme.typography.h6)
-                Text("Director: ${movie.director}",
-                    style = MaterialTheme.typography.caption)
-                Text("Released: ${movie.year}",
-                    style = MaterialTheme.typography.caption)
+
+                Text( buildAnnotatedString {
+                    withStyle(style = SpanStyle(
+                        color = Color.White,
+                        fontSize = 13.sp)){
+                        append("Released: ")
+                    }
+                    withStyle(style = SpanStyle(
+                        Color.White,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Light
+                    )){
+                        append("${movie.year}")
+                    }
+                })
+
+                Text( buildAnnotatedString {
+                    withStyle(style = SpanStyle(
+                        color = Color.White,
+                        fontSize = 13.sp)){
+                        append("Genre: ")
+                    }
+                    withStyle(style = SpanStyle(
+                        Color.White,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Light
+                    )){
+                        append("${movie.genre}")
+                    }
+                })
 
                 AnimatedVisibility(visible = expanded) {
-                    Column() {
-                        Text("Genre: ${movie.genre}",
-                            style = MaterialTheme.typography.caption)
-                        Text("Plot: ${movie.plot}",
-                            style = MaterialTheme.typography.caption)
+                    Column {
+                        Text( buildAnnotatedString {
+                            withStyle(style = SpanStyle(
+                                color = Color.White,
+                                fontSize = 13.sp)){
+                                append("Plot: ")
+                            }
+                            withStyle(style = SpanStyle(
+                                Color.White,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Light
+                            )){
+                                append("${movie.plot}")
+                            }
+                        }, modifier = Modifier.padding(6.dp))
+
+                        Divider(modifier = Modifier.padding(bottom = 3.dp))
+
+                        Text( buildAnnotatedString {
+                            withStyle(style = SpanStyle(
+                                color = Color.White,
+                                fontSize = 13.sp)){
+                                append("Director: ")
+                            }
+                            withStyle(style = SpanStyle(
+                                Color.White,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Light
+                            )){
+                                append("${movie.director}")
+                            }
+                        })
+
+                        Text( buildAnnotatedString {
+                            withStyle(style = SpanStyle(
+                                color = Color.White,
+                                fontSize = 13.sp)){
+                                append("Actors: ")
+                            }
+                            withStyle(style = SpanStyle(
+                                Color.White,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Light
+                            )){
+                                append("${movie.actors}")
+                            }
+                        })
+
+                        Text( buildAnnotatedString {
+                            withStyle(style = SpanStyle(
+                                color = Color.White,
+                                fontSize = 13.sp)){
+                                append("Rating: ")
+                            }
+                            withStyle(style = SpanStyle(
+                                Color.White,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Light
+                            )){
+                                append("${movie.rating}")
+                            }
+                        })
                     }
                 }
 
